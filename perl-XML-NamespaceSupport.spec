@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-NamespaceSupport
 Version  : 1.11
-Release  : 4
+Release  : 5
 URL      : http://search.cpan.org/CPAN/authors/id/P/PE/PERIGRIN/XML-NamespaceSupport-1.11.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/P/PE/PERIGRIN/XML-NamespaceSupport-1.11.tar.gz
 Summary  : 'a simple generic namespace support class'
@@ -59,7 +59,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.22.0/XML/NamespaceSupport.pm
+/usr/lib/perl5/site_perl/5.24.0/XML/NamespaceSupport.pm
 
 %files doc
 %defattr(-,root,root,-)
