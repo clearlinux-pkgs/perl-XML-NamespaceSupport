@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-NamespaceSupport
 Version  : 1.12.9
-Release  : 11
+Release  : 12
 URL      : https://www.cpan.org/authors/id/P/PE/PERIGRIN/XML-NamespaceSupport-1.12_9.tar.gz
 Source0  : https://www.cpan.org/authors/id/P/PE/PERIGRIN/XML-NamespaceSupport-1.12_9.tar.gz
 Summary  : 'A simple generic namespace processor'
