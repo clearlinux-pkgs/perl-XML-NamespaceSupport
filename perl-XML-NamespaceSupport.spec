@@ -4,13 +4,14 @@
 #
 Name     : perl-XML-NamespaceSupport
 Version  : 1.12
-Release  : 24
+Release  : 25
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-NamespaceSupport-1.12.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-NamespaceSupport-1.12.tar.gz
 Summary  : 'A simple generic namespace processor'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-XML-NamespaceSupport-license = %{version}-%{release}
+Requires: perl-XML-NamespaceSupport-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -24,6 +25,7 @@ a number of basic checks.
 Summary: dev components for the perl-XML-NamespaceSupport package.
 Group: Development
 Provides: perl-XML-NamespaceSupport-devel = %{version}-%{release}
+Requires: perl-XML-NamespaceSupport = %{version}-%{release}
 
 %description dev
 dev components for the perl-XML-NamespaceSupport package.
@@ -37,14 +39,24 @@ Group: Default
 license components for the perl-XML-NamespaceSupport package.
 
 
+%package perl
+Summary: perl components for the perl-XML-NamespaceSupport package.
+Group: Default
+Requires: perl-XML-NamespaceSupport = %{version}-%{release}
+
+%description perl
+perl components for the perl-XML-NamespaceSupport package.
+
+
 %prep
 %setup -q -n XML-NamespaceSupport-1.12
+cd %{_builddir}/XML-NamespaceSupport-1.12
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -54,7 +66,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -63,7 +75,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-XML-NamespaceSupport
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-XML-NamespaceSupport/LICENSE
+cp %{_builddir}/XML-NamespaceSupport-1.12/LICENSE %{buildroot}/usr/share/package-licenses/perl-XML-NamespaceSupport/c45574961a40fa36f666c6de7712e51fd54f9fef
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -76,7 +88,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/XML/NamespaceSupport.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -84,4 +95,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-XML-NamespaceSupport/LICENSE
+/usr/share/package-licenses/perl-XML-NamespaceSupport/c45574961a40fa36f666c6de7712e51fd54f9fef
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/XML/NamespaceSupport.pm
